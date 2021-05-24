@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Калькулятор</title>
+  <div th:replace="fragment/libs :: css"></div>
+</head>
+<body>
+  <div th:replace="fragment/header :: header"></div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <br>
+        <form action="/execute" method="post">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input type="number" name="num1" class="form-control" required id="floatingInputGrid" placeholder="10">
+                <label for="floatingInputGrid">Число 1</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input type="number" name="num2" class="form-control" required id="floatingInputGrid2" placeholder="5">
+                <label for="floatingInputGrid2">Число 2</label>
+              </div>
+            </div>
+            <div class="col-md-12 mt-2">
+              <div class="form-floating">
+                <select name="operation" class="form-select" id="floatingSelectGrid" required>
+                  <option th:each="item : ${operations}" th:value="${item.name}" th:text="${item.name}"></option>
+                </select>
+                <label for="floatingSelectGrid">Операция с числами</label>
+              </div>
+              <div class="d-grid gap-2 mt-2">
+                <button type="submit" width="100%" class="btn btn-success btn-lg">Посчитать</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div th:replace="fragment/alert :: alert"></div>
+  <div th:replace="fragment/libs :: js"></div>
+</body>
+</html>

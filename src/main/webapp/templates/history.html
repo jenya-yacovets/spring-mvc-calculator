@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>История</title>
+  <div th:replace="fragment/libs :: css"></div>
+</head>
+<body>
+<div th:replace="fragment/header :: header"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <br>
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Числа</th>
+          <th scope="col">Операция</th>
+          <th scope="col">Результат</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="item: ${history}">
+          <th scope="row" th:text="${item.id}"></th>
+          <th scope="row" th:text="${#strings.listJoin(item.numbers, ', ')}"></th>
+          <th scope="row" th:text="${item.type.getName()}"></th>
+          <th scope="row" th:text="${item.result()}"></th>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div th:replace="fragment/alert :: alert"></div>
+<div th:replace="fragment/libs :: js"></div>
+</body>
+</html>
