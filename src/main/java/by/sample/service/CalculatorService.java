@@ -22,7 +22,8 @@ public class CalculatorService {
         this.operationList = operationList;
     }
 
-    public Operation execute(OperationModel operation, User user) throws BadRequestException {
+    public Operation execute(OperationModel operation, User user) {
+
         OperationType operationType = null;
         for(OperationType item : operationList.get()) {
             if(item.getName().equals(operation.getOperation())) {
@@ -30,7 +31,6 @@ public class CalculatorService {
                 break;
             }
         }
-        if(operationType == null) throw new BadRequestException("Invalid operation");
 
         Operation newOperation = new Operation(operationType, Arrays.asList(operation.getNum1(), operation.getNum2()), user);
         historyDAO.save(newOperation);

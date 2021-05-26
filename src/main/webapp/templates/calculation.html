@@ -12,26 +12,30 @@
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <br>
-        <form action="/execute" method="post">
+
+        <form action="#" th:action="@{/}" th:object="${operationModel}" method="post">
           <div class="row">
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="number" name="num1" class="form-control" required id="floatingInputGrid" placeholder="10">
+                <input type="text" class="form-control" id="floatingInputGrid" th:field="*{num1}">
+                <p th:if="${#fields.hasErrors('num1')}" th:errors="*{num1}"></p>
                 <label for="floatingInputGrid">Число 1</label>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="number" name="num2" class="form-control" required id="floatingInputGrid2" placeholder="5">
+                <input type="text" class="form-control" id="floatingInputGrid2" th:field="*{num2}">
+                <p th:if="${#fields.hasErrors('num2')}" th:errors="*{num2}"></p>
                 <label for="floatingInputGrid2">Число 2</label>
               </div>
             </div>
             <div class="col-md-12 mt-2">
               <div class="form-floating">
-                <select name="operation" class="form-select" id="floatingSelectGrid" required>
-                  <option th:each="item : ${operations}" th:value="${item.name}" th:text="${item.name}"></option>
+                <select class="form-select" id="floatingSelectGrid" th:field="*{operation}">
+                  <option th:each="item : ${operationType}" th:value="${item.name}" th:text="${item.name}"></option>
                 </select>
-                <label for="floatingSelectGrid">Операция с числами</label>
+                <p th:if="${#fields.hasErrors('operation')}" th:errors="*{operation}"></p>
+                <label for="floatingSelectGrid">Операция</label>
               </div>
               <div class="d-grid gap-2 mt-2">
                 <button type="submit" width="100%" class="btn btn-success btn-lg">Посчитать</button>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Произошла ошибка</title>
+    <div th:replace="fragment/libs :: css"></div>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h1 style="margin-top: 40%;" th:text="${errorMessage}"></h1>
+      </div>
+    </div>
+  </div>
+  <div th:replace="fragment/libs :: js"></div>
+</body>
+</html>
